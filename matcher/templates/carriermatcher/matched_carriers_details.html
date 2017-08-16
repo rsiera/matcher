@@ -1,0 +1,53 @@
+{% extends "admin/base_site.html" %}
+{% load staticfiles %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/carriermatching.css' %}" />
+{% endblock %}
+
+{% block extrajs %}
+    {{ block.super }}
+    <script src="{% static 'js/CarrierMatching.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <h1>Carrier matching</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        <table data-match-url="{% url "carriermatcher:match_company" %}" id='carrier-table'>
+            <tr>
+                <th>Row</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Country</th>
+                <th class="carrier-matches">Matches</th>
+            </tr>
+            {% for form in formset %}
+                <tr class="carrier-row">
+                    <td class="row-number">{{ form.carrier.row_number }}</td>
+                    <td class="carrier-name">{{ form.carrier.name }}</td>
+                    <td class="carrier-city">{{ form.carrier.city }}</td>
+                    <td class="carrier-country">{{ form.carrier.country }}</td>
+                    <td class='carrier-matches'>
+                        Waiting...
+                    </td>
+                    <td>
+                        {{ form.as_p }}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr class="submit-row">
+                <td colspan="5"></td>
+                <td colspan="2">
+                    <button type="submit" disabled="disabled">
+                        Save and download
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+{% endblock %}

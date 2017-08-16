@@ -1,0 +1,16 @@
+{% extends "admin/base_site.html" %}
+
+
+{% block content %}
+    <h1>Carrier matching</h1>
+    <p>
+        Click on link below to download Excel file with matched carriers
+    </p>
+    <p>
+        <a href="{{ object.uploaded.url }}">Matched Carriers XLS</a>
+    </p>
+    <p>
+        If you made mistake, you can match the same file again
+        <a href="{% url "carriermatcher:matching_request_detail" object.pk %}">here</a>.
+    </p>
+{% endblock %}

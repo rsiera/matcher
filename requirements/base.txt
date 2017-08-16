@@ -1,0 +1,9 @@
+certifi==2017.7.27.1
+chardet==3.0.4
+idna==2.6
+pysolr==3.6.0
+requests==2.18.4
+urllib3==1.22
+xlrd==1.0.0
+xlutils==2.0.0
+xlwt==1.2.0

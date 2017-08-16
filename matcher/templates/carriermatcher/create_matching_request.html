@@ -1,0 +1,14 @@
+{% extends "admin/base_site.html" %}
+
+{% load static %}
+{% block content %}
+    <h1>Upload excel file for carrier matching</h1>
+    <p>Example file:
+        <a href="{% static 'carrier_matcher_template.xls' %}">Carrier Matcher.xml</a>
+    </p>
+    <form action="{% url "carriermatcher:create_matching_request" %}" method="post"
+          enctype="multipart/form-data">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Upload"/>
+    </form>
+{% endblock %}
